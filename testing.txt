@@ -36,6 +36,8 @@ int main() {
 // returns: none
 void simulateFestivalAtmosphere(map<string, array<list<string>, 3>>& festivalData, string stageName, int hour) {
 
+	// bug found through unit testing: if the stage name is not found in the map, the program will crash
+
 	// the function will take in the map and the current hour of the festival
 	// randomly choose between the three events: artist changes, song genre changes, and weather effects
 	int event = rand() % 3;
