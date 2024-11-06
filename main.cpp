@@ -49,9 +49,11 @@ int main() {
 
 	// create a sample data for the main stage of the festival
 	array<list<string>, 3> mainStageData;
-	mainStageData[0].push_back("Pop"); // add sample genre
+	mainStageData[0].push_back("R&B"); // add sample genre
 	mainStageData[1].push_back("The Weeknd"); // add sample artist
 	mainStageData[2].push_back("Sunny"); // add sample weather
+
+	festivalData["Main Stage"] = mainStageData; // insert the sample data into the map
 
 	// output the initial atmosphere of the festival using the following format:
 	/*
@@ -61,25 +63,81 @@ int main() {
 		Weather: <weather condition>
 	*/
 
+	cout << "Initial Festival Atmosphere:" << endl;
+
+	for (auto stage : festivalData) {
+
+		cout << "Stage: " << stage.first << endl;
+		cout << "\tArtist(s): ";
+
+		for (auto artist : stage.second[1])
+			cout << artist << " ";
+
+		cout << endl << "\tGenre(s): ";
+
+		for (auto genre : stage.second[0])
+			cout << genre << " ";
+
+		cout << endl << "\tWeather: ";
+
+		for (auto weather : stage.second[2])
+			cout << weather << " ";
+
+		cout << endl;
+
+	}
+
 	// start simulating the atmosphere of the festival (25 hours, 1 hour intervals)
+	for (int hour = 1; hour <= 25; hour++) {
+
+		simulateFestivalAtmosphere(festivalData, hour);
+
 		// for each stage in the map, call the function that simulates the atmosphere of the festival
 		// pass the map and the current hour of the festival to the function
 		// output the new atmosphere of the festival using the same format as above
 
 		// pause the program for a few seconds to simulate the passage of time
 
+	}
+
 	return 0;
 
 }
 // end of the main function
 
-// create a function that simulates the atmosphere of the festival by manipulating the data in the map
+// simulateFestivalAtmosphere() will take in the map and the current hour of the festival and randomly choose between the three events: artist changes, song genre changes, and weather effects
+// arguments: map<string, array<list<string>, 3>>& festivalData - the map that contains the data of each stage at the festival, int hour - the current hour of the festival
+// returns: none
+void simulateFestivalAtmosphere(map<string, array<list<string>, 3>>& festivalData, int hour) {
 
-		// the function will take in the map and the current hour of the festival
-		// randomly choose between the three events: artist changes, song genre changes, and weather effects
+	// the function will take in the map and the current hour of the festival
+	// randomly choose between the three events: artist changes, song genre changes, and weather effects
+	int event = rand() % 3;
 
-		// in the case of an artist change, clear the list of artists and add the new artists to the list
-		// in the case of a song genre change, clear the list of genres and add the new genres to the list
-		// in the case of a weather effect, clear the list of weather and add the new weather to the list
+	// switch statement to handle the different events
+	switch (event) {
 
+	case 0: // artist changes
+
+		// randomly select a stage from the map
+		// randomly select a new artist to replace the current artist(s) on that stage
+		// clear the list of artists and add the new artist to the list
+		break;
+
+	case 1: // song genre changes
+
+		// randomly select a stage from the map
+		// randomly select a new genre to replace the current genre(s) on that stage
+		// clear the list of genres and add the new genre to the list
+		break;
+
+	case 2: // weather effects
+
+		// randomly select a stage from the map
+		// randomly select a new weather condition to replace the current weather on that stage
+		// clear the list of weather and add the new weather to the list
+		break;
+
+	}
+}
 // end of function
