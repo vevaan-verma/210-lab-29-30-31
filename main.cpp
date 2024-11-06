@@ -61,7 +61,6 @@ int main() {
 
 	// output the initial atmosphere of the festival
 	outputFestivalInfo(festivalData);
-	cout << endl; // output a blank line for formatting purposes
 
 	// start simulating the atmosphere of the festival (25 hours, 1 hour intervals)
 	for (int hour = 1; hour <= 25; hour++) {
@@ -75,6 +74,8 @@ int main() {
 
 	}
 
+	cout << endl; // output a blank line for formatting purposes
+	outputFestivalInfo(festivalData); // output the final atmosphere of the festival
 	return 0;
 
 }
@@ -142,6 +143,7 @@ void outputFestivalInfo(map<string, array<list<string>, 3>>& festivalData) {
 		Weather: <weather condition>
 	*/
 
+	// this whole section below outputs the current atmosphere of the festival using the format above
 	cout << "Current Festival Atmosphere:" << endl;
 
 	for (auto stage : festivalData) {
