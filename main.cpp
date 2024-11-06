@@ -16,24 +16,42 @@ using namespace std;
 #include <list>
 #include <array>
 
-// include all the headers to get file input and hold the data
-
 // function prototype for the atmosphere simulation function
 void simulateFestivalAtmosphere(map<string, array<list<string>, 3>>& festivalData, int hour);
 
+/* CONSTANTS */
+const string FILE_NAME = "festival_data.txt"; // the name of the file that contains the data of the festival
+
 // create the main function
+int main() {
 
 	// create a map that will hold the data of each stage at the festival; each value will be an array that contains three lists
 	// the lists will contain the genres of music being played (string), the artists performing on that stage (string), and the weather (string)
+	map<string, array<list<string>, 3>> festivalData;
 
 	// open the file that contains the data of the festival
-		// make sure the file is open and read the data from the file, otherwise print an error message and exit the program
+	ifstream fin(FILE_NAME);
 
-	// read the data from the file and store it in the map
+	// make sure the file is open and read the data from the file, otherwise print an error message and exit the program
+	if (!fin) {
+
+		cout << "Error: File " << FILE_NAME << " not found." << endl; // output error message
+		return 1; // return error code
+
+	}
+
+	// read the data from the file and store it in the map (for now, actual file reading is not implemented because sample data is used)
 		// each line in the file will contain the name of the stage and the atmosphere data of the stage
 		// insert each part of the atmosphere data into its respective list in the map
 
 	// close the file to prevent memory leaks
+	fin.close();
+
+	// create a sample data for the main stage of the festival
+	array<list<string>, 3> mainStageData;
+	mainStageData[0].push_back("Pop"); // add sample genre
+	mainStageData[1].push_back("The Weeknd"); // add sample artist
+	mainStageData[2].push_back("Sunny"); // add sample weather
 
 	// output the initial atmosphere of the festival using the following format:
 	/*
@@ -50,6 +68,9 @@ void simulateFestivalAtmosphere(map<string, array<list<string>, 3>>& festivalDat
 
 		// pause the program for a few seconds to simulate the passage of time
 
+	return 0;
+
+}
 // end of the main function
 
 // create a function that simulates the atmosphere of the festival by manipulating the data in the map
