@@ -8,13 +8,17 @@ Implementation:
 Simulated Events:
 	The simulation will focus on three events: artist changes, song genre changes, and weather effects that push crowds to different stages. During a specific hour, the crowd may be completely pushed to a different stage due to bad weather conditions, an artist change, or a genre change.
 */
-using namespace std;
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <map>
 #include <list>
 #include <array>
+#include <chrono>
+#include <thread>
+using namespace std;
+using namespace std::this_thread; // for sleep_for
+using namespace std::chrono_literals; // for the 1s literal
 
 // function prototype for the atmosphere simulation function
 void simulateFestivalAtmosphere(map<string, array<list<string>, 3>>& festivalData, string stageName, int hour);
@@ -82,8 +86,8 @@ int main() {
 		for (auto stage : festivalData)
 			simulateFestivalAtmosphere(festivalData, stage.first, hour);
 
-		// pause the program for a few seconds to simulate the passage of time
-		// this is not necessary in the final implementation, but it is useful for testing purposes
+		cout << "-----------------------------------------------------------------------------------" << endl; // output a separator between each hour
+		sleep_for(1s); // sleep for 2 seconds to simulate the passage of time
 
 	}
 
