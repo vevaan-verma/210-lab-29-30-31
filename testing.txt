@@ -1,0 +1,62 @@
+Testing outputFestivalInfo():
+- This function is tested through one call at the beginning of the program, which prints the initial festival atmosphere data
+- It is also tested after the simulation is completed, outputting the final festival atmosphere data, after it has been manipulated by the simulation.
+Driver Program:
+
+/* FUNCTION PROTOTYPES */
+void outputFestivalInfo(map<string, array<list<string>, 3>>& festivalData);
+
+int main() {
+
+	map<string, array<list<string>, 3>> festivalData;
+
+	array<list<string>, 3> mainStageData;
+	mainStageData[0].push_back("R&B"); // add sample genre
+	mainStageData[1].push_back("The Weeknd"); // add sample artist
+	mainStageData[2].push_back("Sunny"); // add sample weather
+
+	outputFestivalInfo(festivalData);	
+
+	return 0;
+
+}
+
+// outputFestivalInfo() will take in the map and output the current atmosphere of the festival
+// arguments: map<string, array<list<string>, 3>>& festivalData - the map that contains the data of each stage at the festival
+// returns: none
+void outputFestivalInfo(map<string, array<list<string>, 3>>& festivalData) {
+
+	// output the current atmosphere of the festival using the following format:
+	/*
+	Stage: <stage name>
+		Artist(s): <artist name>
+		Genre(s): <genre name>
+		Weather: <weather condition>
+	*/
+
+	// this whole section below outputs the current atmosphere of the festival using the format above
+	for (auto stage : festivalData) {
+
+		cout << "Stage: " << stage.first << endl;
+		cout << "\tArtist(s): ";
+
+		for (auto artist : stage.second[1])
+			cout << artist << " ";
+
+		cout << endl << "\tGenre(s): ";
+
+		for (auto genre : stage.second[0])
+			cout << genre << " ";
+
+		cout << endl << "\tWeather: ";
+
+		for (auto weather : stage.second[2])
+			cout << weather << " ";
+
+		cout << endl;
+
+	}
+
+	cout << endl; // output a blank line for formatting purposes
+
+}
