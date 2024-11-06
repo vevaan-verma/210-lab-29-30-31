@@ -1,8 +1,100 @@
-Testing outputFestivalInfo():
-- This function is tested through one call at the beginning of the program, which prints the initial festival atmosphere data
-- It is also tested after the simulation is completed, outputting the final festival atmosphere data, after it has been manipulated by the simulation.
-Driver Program:
+Testing simulateFestivalAtmosphere():
+- I would use unit testing to verify that this function works correctly by 
 
+Driver Program:
+/* FUNCTION PROTOTYPES */
+void simulateFestivalAtmosphere(map<string, array<list<string>, 3>>& festivalData, string stageName, int hour);
+
+int main() {
+
+	srand(time(0)); // seed the random number generator so we get different results each time to ensure randomization
+
+	map<string, array<list<string>, 3>> festivalData;
+
+	array<list<string>, 3> mainStageData;
+	mainStageData[0].push_back("R&B"); // add sample genre
+	mainStageData[1].push_back("The Weeknd"); // add sample artist
+	mainStageData[2].push_back("Sunny"); // add sample weather
+
+	festivalData["Main Stage"] = mainStageData; // insert the sample data into the map
+
+	simulateFestivalAtmosphere(festivalData, "Main Stage", 1); // call the function to test it and pass hour 1 because this is just a unit test
+
+	// output the updated data to console to verify that the function actually changed the data of the stage
+	cout << "Main Stage" << endl;
+	cout << festivalData.at("Main Stage")[0].front() << endl;
+	cout << festivalData.at("Main Stage")[1].front() << endl;
+	cout << festivalData.at("Main Stage")[2].front() << endl;
+	
+	return 0;
+
+}
+
+// simulateFestivalAtmosphere() will take in the map and the current hour of the festival and randomly choose between the three events: artist changes, song genre changes, and weather effects
+// arguments: map<string, array<list<string>, 3>>& festivalData - the map that contains the data of each stage at the festival, int hour - the current hour of the festival
+// returns: none
+void simulateFestivalAtmosphere(map<string, array<list<string>, 3>>& festivalData, string stageName, int hour) {
+
+	// the function will take in the map and the current hour of the festival
+	// randomly choose between the three events: artist changes, song genre changes, and weather effects
+	int event = rand() % 3;
+
+	if (event == 0) { // artist changes
+
+		festivalData[stageName][0].clear(); // clear the list of genres
+
+		// stage can have up to 3 genres of music being played at the same time
+		int genreCount = rand() % 3 + 1; // randomly select the number of genres that will be played on that stage
+
+		for (int i = 0; i < genreCount; i++) { // for each genre that will be played on that stage
+
+			string newGenre = GENRES[rand() % GENRES.size()]; // randomly select a new genre to replace the current genre(s) on that stage
+			festivalData[stageName][0].push_back(newGenre); // add the new genre to the list
+
+		}
+
+		cout << "Hour " << hour << ": Song genre changes at " << stageName << endl; // output the event change
+
+	} else if (event == 1) { // song genre changes
+
+		// stage can have up to 3 artists performing at the same time
+		int artistCount = rand() % 3 + 1; // randomly select the number of artists that will perform on that stage
+		festivalData[stageName][1].clear(); // clear the list of artists
+
+		for (int i = 0; i < artistCount; i++) { // for each artist that will perform on that stage
+
+			string newArtist = ARTISTS[rand() % ARTISTS.size()]; // randomly select an artist to replace the current artist(s) on that stage
+			festivalData[stageName][1].push_back(newArtist); // add the new artist to the list
+
+		}
+
+		cout << "Hour " << hour << ": Artists on stage change at " << stageName << endl; // output the event change
+
+	} else if (event == 2) { // weather effect changes
+
+		festivalData[stageName][2].clear(); // clear the list of weather
+
+		// stage can have up to 3 weather conditions at the same time (due to the existence of partly cloudy, etc.)
+		int weatherCount = rand() % 3 + 1; // randomly select the number of weather conditions that will affect that stage
+
+		for (int i = 0; i < weatherCount; i++) { // for each weather condition that will affect that stage
+
+			string newWeather = WEATHER[rand() % WEATHER.size()]; // randomly select a new weather condition to replace the current weather on that stage
+			festivalData[stageName][2].push_back(newWeather); // add the new weather to the list
+
+		}
+
+		cout << "Hour " << hour << ": Weather effect changes at " << stageName << endl; // output the event change
+
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Testing outputFestivalInfo():
+- I would use unit testing to verify that this function works correctly by creating a map and adding one element with known data to it. Then I would pass that element into the function and verify that the correct information is outputted.
+
+Driver Program:
 /* FUNCTION PROTOTYPES */
 void outputFestivalInfo(map<string, array<list<string>, 3>>& festivalData);
 
@@ -15,7 +107,11 @@ int main() {
 	mainStageData[1].push_back("The Weeknd"); // add sample artist
 	mainStageData[2].push_back("Sunny"); // add sample weather
 
-	outputFestivalInfo(festivalData);	
+	festivalData["Main Stage"] = mainStageData; // insert the sample data into the map
+
+	outputFestivalInfo(festivalData); // call the function to test it
+
+	// this unit test would ensure that the correct contents (the contents added above) are outputted to the console
 
 	return 0;
 
