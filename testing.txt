@@ -1,5 +1,6 @@
 Testing simulateFestivalAtmosphere():
-- I would use unit testing to verify that this function works correctly by 
+- I would use unit testing to verify that this function works correctly by adding a single element to the map with known data. Then, I would call this function on the map and then output the data after the function is called to verify that the data was actually modified randomly as it should be.
+- One important thing to do this is to seed the random number generator to confirm that the data is being randomly generated.
 
 Driver Program:
 /* FUNCTION PROTOTYPES */
