@@ -35,9 +35,6 @@ const vector<string> WEATHER = { "Sunny", "Rainy", "Cloudy", "Windy", "Snowy", "
 
 int main() {
 
-	// seed the random number generator
-	srand(time(0));
-
 	// create a map that will hold the data of each stage at the festival; each value will be an array that contains three lists
 	// the lists will contain the genres of music being played (string), the artists performing on that stage (string), and the weather (string)
 	map<string, array<list<string>, 3>> festivalData;
@@ -199,12 +196,12 @@ void outputFestivalInfo(map<string, array<list<string>, 3>>& festivalData) {
 		cout << artists.substr(0, artists.size() - 2) << endl; // remove the last comma and space from the list of artists
 
 		cout << "\tWeather: ";
-		string weather = "";
+		string weatherConditions = "";
 
 		for (auto weather : stage.second[2])
-			weather += weather + ", ";
+			weatherConditions += weather + ", ";
 
-		cout << weather.substr(0, weather.size() - 2) << endl; // remove the last comma and space from the list of weather
+		cout << weatherConditions.substr(0, weatherConditions.size() - 2) << endl; // remove the last comma and space from the list of weather
 
 	}
 
