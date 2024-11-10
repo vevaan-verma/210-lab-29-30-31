@@ -45,6 +45,14 @@ int main() {
 	// open the file that contains the data of the festival
 	ifstream fin(DATA_FILE_NAME);
 
+	// make sure the file is open and read the data from the file, otherwise print an error message and exit the program
+	if (!fin) {
+
+		cout << "Error: File " << DATA_FILE_NAME << " not found." << endl; // output error message
+		return 1; // return error code
+
+	}
+
 	// read the data from the file and store it in the map (for now, actual file reading is not implemented because sample data is used)
 		// each line in the file will contain the name of the stage and the atmosphere data of the stage
 		// insert each part of the atmosphere data into its respective list in the map
