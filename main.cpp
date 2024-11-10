@@ -94,7 +94,7 @@ int main() {
 			simulateFestivalAtmosphere(festivalData, stage.first, hour);
 
 		cout << "-----------------------------------------------------------------------------------" << endl; // output a separator between each hour
-		sleep_for(1s); // sleep for 2 seconds to simulate the passage of time
+		sleep_for(1s); // sleep for 1 seconds to simulate the passage of time
 
 	}
 
@@ -182,22 +182,29 @@ void outputFestivalInfo(map<string, array<list<string>, 3>>& festivalData) {
 	for (auto stage : festivalData) {
 
 		cout << "Stage: " << stage.first << endl;
-		cout << "\tArtist(s): ";
-
-		for (auto artist : stage.second[1])
-			cout << artist << " ";
-
-		cout << endl << "\tGenre(s): ";
+		cout << "\tGenre(s): ";
+		string genres = "";
 
 		for (auto genre : stage.second[0])
-			cout << genre << " ";
+			genres += genre + ", ";
 
-		cout << endl << "\tWeather: ";
+		cout << genres.substr(0, genres.size() - 2) << endl; // remove the last comma and space from the list of genres
+
+		cout << "\tArtist(s): ";
+		string artists = "";
+
+		for (auto artist : stage.second[1])
+			artists += artist + ", ";
+
+		cout << artists.substr(0, artists.size() - 2) << endl; // remove the last comma and space from the list of artists
+
+		cout << "\tWeather: ";
+		string weather = "";
 
 		for (auto weather : stage.second[2])
-			cout << weather << " ";
+			weather += weather + ", ";
 
-		cout << endl;
+		cout << weather.substr(0, weather.size() - 2) << endl; // remove the last comma and space from the list of weather
 
 	}
 

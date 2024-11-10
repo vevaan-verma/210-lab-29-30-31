@@ -1,0 +1,2 @@
+1. Small formatting issue with the final output: there are no commas placed between artist names, genres, and weather conditions, which could be confusing for the user
+2. 
