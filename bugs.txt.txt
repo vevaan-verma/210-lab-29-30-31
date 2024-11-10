@@ -5,4 +5,6 @@
 5. Choices aren't randomized each time, which ruins the simulation.
 6. File isn't being closed, which could cause memory leaks.
 7. File validation isn't checked when it is open, so an error could be caused if the file doesn't exist.
-8. 
+8. Weather conditions are added to the wrong list.
+9. 
+10. 

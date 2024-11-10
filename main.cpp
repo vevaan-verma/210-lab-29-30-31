@@ -153,7 +153,7 @@ void simulateFestivalAtmosphere(map<string, array<list<string>, 3>>& festivalDat
 		for (int i = 0; i < weatherCount; i++) { // for each weather condition that will affect that stage
 
 			string newWeather = WEATHER[rand() % WEATHER.size()]; // randomly select a new weather condition to replace the current weather on that stage
-			festivalData[stageName][1].push_back(newWeather); // add the new weather to the list
+			festivalData[stageName][2].push_back(newWeather); // add the new weather to the list
 
 		}
 
