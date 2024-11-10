@@ -1,2 +1,6 @@
-1. Small formatting issue with the final output: there are no commas placed between artist names, genres, and weather conditions, which could be confusing for the user
-2. 
+1. Small formatting issue with the final output: there are no commas placed between artist names, genres, and weather conditions, which could be confusing for the user.
+2. The program wait time after each simulation round was too long, which could be an annoyance to the user.
+3. Weather conditions don't output at the end.
+4. Program output is a little cluttered.
+5. Choices aren't randomized each time, which ruins the simulation.
+6. File isn't being closed, which could cause memory leaks

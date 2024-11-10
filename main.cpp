@@ -35,20 +35,15 @@ const vector<string> WEATHER = { "Sunny", "Rainy", "Cloudy", "Windy", "Snowy", "
 
 int main() {
 
+	// seed the random number generator
+	srand(time(0));
+
 	// create a map that will hold the data of each stage at the festival; each value will be an array that contains three lists
 	// the lists will contain the genres of music being played (string), the artists performing on that stage (string), and the weather (string)
 	map<string, array<list<string>, 3>> festivalData;
 
 	// open the file that contains the data of the festival
 	ifstream fin(DATA_FILE_NAME);
-
-	// make sure the file is open and read the data from the file, otherwise print an error message and exit the program
-	if (!fin) {
-
-		cout << "Error: File " << DATA_FILE_NAME << " not found." << endl; // output error message
-		return 1; // return error code
-
-	}
 
 	// read the data from the file and store it in the map (for now, actual file reading is not implemented because sample data is used)
 		// each line in the file will contain the name of the stage and the atmosphere data of the stage
@@ -74,9 +69,6 @@ int main() {
 		festivalData[stageName] = stageData;
 
 	}
-
-	// close the file to prevent memory leaks
-	fin.close();
 
 	// output the initial atmosphere of the festival
 	cout << "Initial Festival Atmosphere:" << endl;
@@ -153,7 +145,7 @@ void simulateFestivalAtmosphere(map<string, array<list<string>, 3>>& festivalDat
 		for (int i = 0; i < weatherCount; i++) { // for each weather condition that will affect that stage
 
 			string newWeather = WEATHER[rand() % WEATHER.size()]; // randomly select a new weather condition to replace the current weather on that stage
-			festivalData[stageName][2].push_back(newWeather); // add the new weather to the list
+			festivalData[stageName][1].push_back(newWeather); // add the new weather to the list
 
 		}
 
@@ -185,7 +177,7 @@ void outputFestivalInfo(map<string, array<list<string>, 3>>& festivalData) {
 		for (auto genre : stage.second[0])
 			genres += genre + ", ";
 
-		cout << genres.substr(0, genres.size() - 2) << endl; // remove the last comma and space from the list of genres
+		cout << genres.substr(0, genres.size() - 1) << endl; // remove the last comma and space from the list of genres
 
 		cout << "\tArtist(s): ";
 		string artists = "";
@@ -193,7 +185,7 @@ void outputFestivalInfo(map<string, array<list<string>, 3>>& festivalData) {
 		for (auto artist : stage.second[1])
 			artists += artist + ", ";
 
-		cout << artists.substr(0, artists.size() - 2) << endl; // remove the last comma and space from the list of artists
+		cout << artists.substr(0, artists.size() - 1) << endl; // remove the last comma and space from the list of artists
 
 		cout << "\tWeather: ";
 		string weatherConditions = "";
@@ -201,7 +193,7 @@ void outputFestivalInfo(map<string, array<list<string>, 3>>& festivalData) {
 		for (auto weather : stage.second[2])
 			weatherConditions += weather + ", ";
 
-		cout << weatherConditions.substr(0, weatherConditions.size() - 2) << endl; // remove the last comma and space from the list of weather
+		cout << weatherConditions.substr(0, weatherConditions.size() - 1) << endl; // remove the last comma and space from the list of weather
 
 	}
 
