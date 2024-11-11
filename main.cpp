@@ -20,7 +20,6 @@ Simulated Events:
 #include <thread>
 using namespace std;
 using namespace std::this_thread; // for sleep_for
-using namespace std::chrono_literals; // for the 1s literal
 
 // function prototype for the atmosphere simulation function
 void simulateFestivalAtmosphere(map<string, array<list<string>, 3>>& festivalData, string stageName, int hour);
@@ -49,7 +48,7 @@ int main() {
 	if (!fin) {
 
 		cout << "Error: File " << DATA_FILE_NAME << " not found." << endl; // output error message
-		return 1; // return error code
+		return 0; // return error code
 
 	}
 
@@ -185,7 +184,7 @@ void outputFestivalInfo(map<string, array<list<string>, 3>>& festivalData) {
 		for (auto genre : stage.second[0])
 			genres += genre + ", ";
 
-		cout << genres.substr(0, genres.size() - 1) << endl; // remove the last comma and space from the list of genres
+		cout << genres.substr(0, genres.size() - 2) << endl; // remove the last comma and space from the list of genres
 
 		cout << "\tArtist(s): ";
 		string artists = "";
@@ -193,7 +192,7 @@ void outputFestivalInfo(map<string, array<list<string>, 3>>& festivalData) {
 		for (auto artist : stage.second[1])
 			artists += artist + ", ";
 
-		cout << artists.substr(0, artists.size() - 1) << endl; // remove the last comma and space from the list of artists
+		cout << artists.substr(0, artists.size() - 2) << endl; // remove the last comma and space from the list of artists
 
 		cout << "\tWeather: ";
 		string weatherConditions = "";
