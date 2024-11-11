@@ -20,6 +20,7 @@ Simulated Events:
 #include <thread>
 using namespace std;
 using namespace std::this_thread; // for sleep_for
+using namespace std::chrono_literals; // for the 1s literal
 
 // function prototype for the atmosphere simulation function
 void simulateFestivalAtmosphere(map<string, array<list<string>, 3>>& festivalData, string stageName, int hour);
@@ -48,7 +49,7 @@ int main() {
 	if (!fin) {
 
 		cout << "Error: File " << DATA_FILE_NAME << " not found." << endl; // output error message
-		return 0; // return error code
+		return 1; // return error code
 
 	}
 

@@ -7,4 +7,5 @@
 7. File validation isn't checked when it is open, so an error could be caused if the file doesn't exist.
 8. Weather conditions are added to the wrong list.
 9. Fix comma removal issue in final output (not a major bug as the extra character was a space, so it wouldn't be noticed anyways).
-10. 
+10. Error code isn't returned when file error occurs.
+11. Import for the 1 second wait constant isn't included.
