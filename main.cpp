@@ -201,7 +201,7 @@ void outputFestivalInfo(map<string, array<list<string>, 3>>& festivalData) {
 		for (auto weather : stage.second[2])
 			weatherConditions += weather + ", ";
 
-		cout << weatherConditions.substr(0, weatherConditions.size() - 1) << endl; // remove the last comma and space from the list of weather
+		cout << weatherConditions.substr(0, weatherConditions.size() - 2) << endl; // remove the last comma and space from the list of weather
 
 	}
 
